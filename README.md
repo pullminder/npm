@@ -38,4 +38,4 @@ This package downloads the correct pre-built binary for your platform on install
 
 ## License
 
-MIT
+Apache-2.0
