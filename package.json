@@ -1,6 +1,6 @@
 {
   "name": "pullminder",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "description": "Pullminder CLI — manage custom rule registries",
   "bin": {
     "pullminder": "run.js"
@@ -8,15 +8,27 @@
   "scripts": {
     "postinstall": "node install.js"
   },
-  "keywords": ["pullminder", "code-review", "registry", "cli"],
+  "keywords": [
+    "pullminder",
+    "code-review",
+    "registry",
+    "cli"
+  ],
   "license": "MIT",
   "homepage": "https://pullminder.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/pullminder/npm.git"
   },
-  "os": ["darwin", "linux", "win32"],
-  "cpu": ["x64", "arm64"],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
   "engines": {
     "node": ">=16"
   }
