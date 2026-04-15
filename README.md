@@ -1,32 +1,78 @@
 # pullminder
 
-npm wrapper for the [Pullminder CLI](https://github.com/pullminder/cli).
+npm wrapper for the [Pullminder CLI](https://github.com/pullminder/cli) — AI-powered PR analysis, risk scoring, and rule-pack enforcement for your codebase.
+
+This package downloads the correct pre-built binary for your platform. No compilation required.
 
 ## Install
 
 ```sh
-# Run without installing:
-npx pullminder registry validate --strict
+# Run instantly without installing
+npx pullminder check
 
-# Install globally:
+# Install globally
 npm install -g pullminder
 
-# As a dev dependency:
+# Add as a dev dependency
 npm install -D pullminder
 ```
 
-## Usage
+## Quick start
 
 ```sh
-pullminder registry init
-pullminder registry validate --strict
-pullminder registry pack add --slug my-rules --kind detection --name "My Rules"
-pullminder version
+# Initialize a project config
+pullminder init
+
+# Analyze your current branch locally (offline, zero config)
+pullminder check
+
+# Run in CI with auto-detection
+pullminder ci
+
+# Analyze a remote PR
+pullminder diff https://github.com/org/repo/pull/42
 ```
 
-## How it works
+## Commands
 
-This package downloads the correct pre-built binary for your platform on install. No compilation required.
+### Local analysis (works offline)
+
+| Command | Description |
+|---------|-------------|
+| `check` | Run rule packs against local branch diff |
+| `ci` | CI-optimized analysis with auto-detection (GitHub Actions, GitLab CI, CircleCI, Jenkins, Bitbucket) |
+| `init` | Create `.pullminder.yml` project config |
+
+### Remote analysis (requires GitHub token)
+
+| Command | Description |
+|---------|-------------|
+| `diff <pr-url>` | Run rule packs against a remote GitHub PR |
+| `score <pr-url>` | Fetch risk score from platform |
+| `brief <pr-url>` | Fetch AI reviewer brief from platform |
+
+### Rule packs and registry
+
+| Command | Description |
+|---------|-------------|
+| `packs` | List, info, enable, disable rule packs |
+| `rules` | Test and publish rule packs |
+| `registry` | Manage custom rule registries (init, validate, pack add/list/remove, upgrade) |
+
+### Configuration and auth
+
+| Command | Description |
+|---------|-------------|
+| `auth` | Login, logout, status, switch-org |
+| `config` | Show, set, export, import, diff |
+| `hooks` | Install/uninstall git hooks for auto-analysis |
+| `version` | Print version info |
+
+### Global flags
+
+| Flag | Description |
+|------|-------------|
+| `--agent` | Output structured JSON for AI coding agent consumption |
 
 ## Supported platforms
 
@@ -35,6 +81,18 @@ This package downloads the correct pre-built binary for your platform on install
 | Linux | x64, arm64 |
 | macOS | x64 (Intel), arm64 (Apple Silicon) |
 | Windows | x64 |
+
+## Documentation
+
+For full CLI reference, configuration options, and rule-pack authoring guides, see the [Pullminder CLI repo](https://github.com/pullminder/cli).
+
+## Links
+
+- [Pullminder](https://pullminder.com) — AI-powered PR review platform
+- [CLI](https://github.com/pullminder/cli) — Full CLI reference and releases
+- [Registry](https://github.com/pullminder/registry) — Official rule pack registry
+- [GitHub Action](https://github.com/pullminder/action) — CI validation action
+- [Homebrew Tap](https://github.com/pullminder/homebrew-tap) — macOS/Linux install via Homebrew
 
 ## License
 
