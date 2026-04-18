@@ -1,16 +1,16 @@
-# @pullminder/cli
+# pullminder
 
 > npm wrapper for the Pullminder CLI — installs the correct binary for your platform.
 
-[![npm](https://img.shields.io/npm/v/@pullminder/cli)](https://www.npmjs.com/package/pullminder)
+[![npm](https://img.shields.io/npm/v/pullminder)](https://www.npmjs.com/package/pullminder)
 [![License](https://img.shields.io/github/license/pullminder/npm)](LICENSE)
 
 ## Installation
 
 ```bash
-npm install -g @pullminder/cli
+npm install -g pullminder
 # or
-npx @pullminder/cli check
+npx pullminder check
 ```
 
 The Pullminder CLI runs on macOS, Linux, and Windows. Choose whichever installation method fits your workflow. All methods produce the same `pullminder` binary.
@@ -46,13 +46,13 @@ brew upgrade pullminder
 If you already have Node.js installed, you can install the CLI as a global npm package:
 
 ```bash
-npm install -g @pullminder/cli
+npm install -g pullminder
 ```
 
 Or run it without installing via `npx`:
 
 ```bash
-npx @pullminder/cli check
+npx pullminder check
 ```
 
 This is especially useful in CI environments where you want to pin a version in `package.json` rather than manage a standalone binary.
@@ -61,13 +61,13 @@ This is especially useful in CI environments where you want to pin a version in 
 
 Pre-built binaries are published on the [GitHub releases page](https://github.com/pullminder/cli/releases) for every supported platform.
 
-| Platform             | Architecture  | Filename                            |
-|----------------------|---------------|-------------------------------------|
-| Linux                | x86_64        | `pullminder-linux-amd64`            |
-| Linux                | ARM64         | `pullminder-linux-arm64`            |
-| macOS                | Intel (x86_64)| `pullminder-darwin-amd64`           |
-| macOS                | Apple Silicon  | `pullminder-darwin-arm64`           |
-| Windows              | x86_64        | `pullminder-windows-amd64.exe`      |
+| Platform | Architecture   | Filename                       |
+| -------- | -------------- | ------------------------------ |
+| Linux    | x86_64         | `pullminder-linux-amd64`       |
+| Linux    | ARM64          | `pullminder-linux-arm64`       |
+| macOS    | Intel (x86_64) | `pullminder-darwin-amd64`      |
+| macOS    | Apple Silicon  | `pullminder-darwin-arm64`      |
+| Windows  | x86_64         | `pullminder-windows-amd64.exe` |
 
 After downloading, make the binary executable (macOS/Linux) and move it to a directory on your `PATH`:
 
