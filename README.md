@@ -2,7 +2,7 @@
 
 > npm wrapper for the Pullminder CLI — installs the correct binary for your platform.
 
-[![npm](https://img.shields.io/npm/v/@pullminder/cli)](https://www.npmjs.com/package/@pullminder/cli)
+[![npm](https://img.shields.io/npm/v/@pullminder/cli)](https://www.npmjs.com/package/pullminder)
 [![License](https://img.shields.io/github/license/pullminder/npm)](LICENSE)
 
 ## Installation
