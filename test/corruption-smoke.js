@@ -4,8 +4,6 @@
 // non-zero.
 
 const http = require("node:http");
-const { spawn } = require("node:child_process");
-const path = require("node:path");
 
 const fakeBinary = Buffer.from("not-a-real-binary");
 const wrongHash = "0".repeat(64);
