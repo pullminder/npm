@@ -145,7 +145,11 @@ async function main() {
   console.log("Installed pullminder to " + dest);
 }
 
-main().catch(function (err) {
-  console.error("Failed to install pullminder: " + err.message);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch(function (err) {
+    console.error("Failed to install pullminder: " + err.message);
+    process.exit(1);
+  });
+}
+
+module.exports = { parseChecksums, sha256, verifyChecksum, getBinaryName };

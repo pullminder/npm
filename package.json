@@ -6,7 +6,8 @@
     "pullminder": "run.js"
   },
   "scripts": {
-    "postinstall": "node install.js"
+    "postinstall": "node install.js",
+    "test": "node --test \"test/**/*.test.js\""
   },
   "keywords": [
     "pullminder",
