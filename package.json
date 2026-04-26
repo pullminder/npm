@@ -1,6 +1,6 @@
 {
   "name": "pullminder",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Pullminder CLI — manage custom rule registries",
   "bin": {
     "pullminder": "run.js"
