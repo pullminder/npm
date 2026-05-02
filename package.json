@@ -15,11 +15,14 @@
     "registry",
     "cli"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://pullminder.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/pullminder/npm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pullminder/npm/issues"
   },
   "os": [
     "darwin",
