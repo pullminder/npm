@@ -17,16 +17,22 @@ The Pullminder CLI runs on macOS, Linux, and Windows. Choose whichever installat
 
 ## Quick install (curl)
 
-The install script detects your OS and architecture, downloads the correct binary, and places it on your `PATH`.
+The install script detects your OS and architecture, downloads the correct binary, verifies its SHA256 against the published `checksums.txt`, and places it in `$HOME/.local/bin`.
 
 ```bash
 curl -fsSL https://get.pullminder.com | sh
 ```
 
-On macOS and Linux this installs to `/usr/local/bin`. You can set a custom location with the `INSTALL_DIR` environment variable:
+If `$HOME/.local/bin` is not on your `PATH`, the installer prints the exact lines to add to your `~/.zshrc` or `~/.bashrc`. You can override the install directory with the `INSTALL_DIR` environment variable:
 
 ```bash
-curl -fsSL https://get.pullminder.com | INSTALL_DIR=$HOME/.local/bin sh
+curl -fsSL https://get.pullminder.com | INSTALL_DIR=/usr/local/bin sh
+```
+
+You can also pin a specific release with `VERSION`:
+
+```bash
+curl -fsSL https://get.pullminder.com | VERSION=0.1.16 sh
 ```
 
 ## Homebrew (macOS and Linux)
@@ -112,10 +118,41 @@ pullminder completion powershell > pullminder.ps1
 
 After generating the script, restart your shell or source the file to enable tab completions for all commands and flags.
 
+## Troubleshooting
+
+### `pullminder: command not found`
+
+The binary was installed but its directory is not on your `PATH`. The curl installer prints the exact `export` line to add when this happens; otherwise:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc   # zsh
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc  # bash
+```
+
+Restart your shell or `source` the file. For Homebrew installs the formula already drops the binary in a `PATH`-managed location, so this only affects the curl path and manual binary downloads.
+
+### `Error: SHA256 mismatch` from the curl installer
+
+The downloaded artifact does not match the SHA256 in the release's `checksums.txt`. This usually means the download was corrupted or interrupted. Re-run the install command. If the failure persists, [open an issue](https://github.com/pullminder/cli/issues) -- do **not** disable the verification.
+
+### macOS Gatekeeper blocks the binary
+
+If you downloaded the binary manually instead of using Homebrew or the install script, macOS may quarantine it. Remove the quarantine attribute:
+
+```bash
+xattr -d com.apple.quarantine /usr/local/bin/pullminder
+```
+
+Homebrew and the curl installer skip this step automatically.
+
+### `npm install -g pullminder` fails with permissions errors
+
+Global npm installs require write access to the npm prefix. Either run with `sudo`, configure a per-user prefix (`npm config set prefix "$HOME/.npm-global"`), or use `npx pullminder` to skip the install entirely.
+
 ## Next steps
 
-- [Command reference](/cli/commands/) -- full list of every command and flag.
-- [CI integration](/cli/ci-integration/) -- run Pullminder in GitHub Actions, GitLab CI, and other pipelines.
+- [Command reference](https://docs.pullminder.com/cli/commands/) -- full list of every command and flag.
+- [CI integration](https://docs.pullminder.com/cli/ci-integration/) -- run Pullminder in GitHub Actions, GitLab CI, and other pipelines.
 
 ## Commands
 
@@ -680,6 +717,22 @@ pullminder registry pack remove deprecated-pack
 
 ---
 
+## Editor integration
+
+### `pullminder lsp`
+
+Start a JSON-RPC Language Server Protocol server over stdio so any LSP-capable editor (VS Code, Neovim, Helix, Zed, JetBrains via plugin) can surface Pullminder findings as inline diagnostics, with rule descriptions on hover and a "disable rule for this line" quick fix.
+
+The server reads `.pullminder.yml` from the workspace folder advertised by the editor, falling back to the current working directory.
+
+```bash
+pullminder lsp
+```
+
+The command takes no flags — the editor drives the session over stdio using the standard LSP message format.
+
+---
+
 ## Utility
 
 ### `pullminder version`
@@ -718,4 +771,4 @@ To report a vulnerability, please email **security@pullminder.com**. See [SECURI
 
 ---
 
-_This README is auto-generated from the [pullminder.com monorepo](https://github.com/upmate/pullminder.com). Last synced: 2026-04-18._
+_This README is auto-generated from the pullminder.com monorepo. Last synced: 2026-05-03._
