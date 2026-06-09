@@ -176,7 +176,7 @@ These commands run entirely offline. They do not require authentication or netwo
 
 Create a `.pullminder.yml` configuration file in the current directory. The file defines which rule packs are enabled and how they are configured.
 
-See [Configuration reference](https://docs.pullminder.com/cli/config/) for every field, default, and example.
+See [Configuration reference](https://docs.pullminder.com/cli/config) for every field, default, and example.
 
 ```bash
 pullminder init
